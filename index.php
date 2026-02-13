@@ -1,6 +1,12 @@
 <?php
 require_once 'config.php';
 
+// Check if the database file exists. If not, trigger the setup
+if (!file_exists(DB_FILE)) {
+    header('Location: setup.php');
+    exit();
+}
+
 // Select all rows from the jobs table
 $sql = "SELECT * FROM jobs";
 
@@ -11,6 +17,11 @@ try {
     // Fetch all results as an associative array
     $jobs_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
+    // If the database file exists but the table is missing, redirect to setup
+    if (strpos($e->getMessage(), "no such table") !== false) {
+        header('Location: setup.php');
+        exit();
+    }
     die("Error fetching job list: " . $e->getMessage());
 }
 
