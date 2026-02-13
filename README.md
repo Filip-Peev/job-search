@@ -1,3 +1,3 @@
 # job-search-web-app
 
-Preparing for Launch of Version 1
+Web App to organize Job Applications. -> [Live Demo](https://filip-peev.com/job-search/)
