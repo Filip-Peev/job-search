@@ -3,7 +3,7 @@ require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
-    
+
     // Prepare the SQL query to delete the job entry
     $sql = "DELETE FROM jobs WHERE id = ?";
     try {
@@ -12,10 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (PDOException $e) {
         die("Error deleting job: " . $e->getMessage());
     }
-    
-    header('Location: index.php'); // Redirect to the main page after deletion
+
+    // Redirect to the main page after deletion
+    header('Location: index.php');
     exit();
 } else {
     die("Invalid request.");
 }
-?>

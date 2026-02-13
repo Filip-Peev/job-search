@@ -8,10 +8,13 @@ form {
     font-family: Arial, sans-serif;
 }
 
-/* Body Styling */
 body {
     background-color: #f9f9f9;
     padding: 20px;
+    background-image: url('job_bg.webp');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 h1 {
@@ -20,45 +23,43 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Table Styling */
+/* Table Styles */
 table {
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 20px;
-
     border-radius: 10px;
-    /* Rounded corners */
     overflow: hidden;
-    /* Ensures the border radius applies correctly */
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Slight transparency to see background */
 }
 
 th,
 td {
     border: 1px solid #ddd;
-    /* Border for table cells */
     padding: 5px;
     text-align: center;
 }
 
 th {
     background-color: #333;
-    /* Darker background for the top row */
     color: white;
-    /* White text for better contrast */
 }
 
-/* Add alternating row colors */
 table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
-    /* Light grey for even rows */
 }
 
 table tbody tr:nth-child(odd) {
     background-color: #ffffff;
-    /* White for odd rows */
 }
 
-/* Link Styling */
+table tbody tr:hover>td,
+table tbody tr:hover>th {
+    background-color: #4CAF50;
+    transition: background-color 0.15s ease;
+}
+
 a {
     color: #007bff;
     text-decoration: none;
@@ -73,15 +74,19 @@ a:hover {
     display: flex;
     align-items: center;
     width: 100%;
+    margin-bottom: 15px;
 }
-
 
 #searchBar {
-    width: 150px;
-    padding: 5px;
+    width: 250px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size:medium;
 }
 
-/* Button Styling */
+/* General Button (Delete buttons in table) */
 button {
     background-color: #dc3545;
     color: white;
@@ -94,13 +99,10 @@ button:hover {
     background-color: #c82333;
 }
 
+/* Action Buttons (Add, Import, Export) */
 .add-job-btn {
-    position: sticky;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     display: inline-block;
-    padding: 5px 10px;
+    padding: 8px 15px;
     background-color: #4CAF50;
     color: white;
     text-align: center;
@@ -108,22 +110,41 @@ button:hover {
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 20px;
-    z-index: 10; /* Ensure it's above other elements */
-
+    z-index: 10;
+    border: none;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
 }
 
 .add-job-btn:hover {
     background-color: #45a049;
     text-decoration: none;
+    color: white;
 }
 
-/* Form Styling for Delete button */
+/* Button Container Layout */
+.button-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+/* Forms */
 form {
-    display: inline;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Success message */
+/* Specific fix for Import Form to keep buttons horizontal */
+#importForm {
+    flex-direction: row;
+    display: inline-flex;
+    margin: 0;
+}
+
+/* Messages */
 .success-message {
     position: fixed;
     top: 20px;
@@ -136,7 +157,7 @@ form {
     font-size: 16px;
 }
 
-/* Add Job Form Layout */
+/* Containers (used in Add/Edit pages) */
 .container {
     background-color: #ffffff;
     padding: 20px;
@@ -145,11 +166,6 @@ form {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
 }
 
 label {
@@ -177,7 +193,17 @@ input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* Responsive Design for Smaller Screens */
+/* Search Highlights */
+.highlight {
+    background-color: #99FF99 !important;
+    font-weight: bold;
+}
+
+.highlight-col {
+    background-color: #CCFFCC !important;
+}
+
+/* Responsive Design */
 @media screen and (max-width: 768px) {
     h1 {
         font-size: 1.5em;
@@ -185,7 +211,6 @@ input[type="submit"]:hover {
 
     table {
         font-size: 14px;
-        margin-bottom: 15px;
     }
 
     th,
@@ -193,28 +218,19 @@ input[type="submit"]:hover {
         padding: 8px;
     }
 
-    a {
-        font-size: 14px;
-    }
-
-    button {
-        padding: 4px 8px;
-    }
-
     .container {
-        padding: 15px;
         width: 90%;
-    }
-
-    input[type="text"],
-    input[type="submit"] {
-        font-size: 0.9em;
     }
 }
 
 @media screen and (max-width: 480px) {
-    body {
-        padding: 10px;
+    .button-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .add-job-btn {
+        width: 100%;
     }
 
     h1 {
@@ -223,28 +239,5 @@ input[type="submit"]:hover {
 
     table {
         font-size: 12px;
-    }
-
-    th,
-    td {
-        padding: 6px;
-    }
-
-    a {
-        font-size: 12px;
-    }
-
-    button {
-        padding: 4px 8px;
-    }
-
-    .container {
-        padding: 10px;
-        width: 95%;
-    }
-
-    input[type="text"],
-    input[type="submit"] {
-        font-size: 0.8em;
     }
 }

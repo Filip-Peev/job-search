@@ -1,29 +1,76 @@
 <?php
 require_once 'config.php';
 
-// If the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve data from the form
     $id = $_POST['id'];
-    $firm_name = $_POST['firm_name'];
-    $business_model = $_POST['business_model'];
-    $contact_info = $_POST['contact_info'];
-    $location = $_POST['location'];
+    $company_name = $_POST['company_name'];
+    $company_structure = $_POST['company_structure'];
+    $web_site = $_POST['web_site'];
+    $major_products_services = $_POST['major_products_services'];
+    $company_type = $_POST['company_type'];
+    $major_technology_stack = $_POST['major_technology_stack'];
+    $company_culture = $_POST['company_culture'];
+    $position_title = $_POST['position_title'];
+    $url = $_POST['url'];
+    $job_responsibilities = $_POST['job_responsibilities'];
+    $job_requirements = $_POST['job_requirements'];
+    $technologies = $_POST['technologies'];
+    $benefits = $_POST['benefits'];
+    $first_contact = $_POST['first_contact'];
+    $contacted_person = $_POST['contacted_person'];
+    $schedule = $_POST['schedule'];
+    $how_it_went = $_POST['how_it_went'];
 
-    // Prepare the SQL query to update job data
-    $sql = "UPDATE jobs SET firm_name = ?, business_model = ?, contact_info = ?, location = ? WHERE id = ?";
+    $sql = "UPDATE jobs SET 
+                company_name = ?, 
+                company_structure = ?, 
+                web_site = ?, 
+                major_products_services = ?, 
+                company_type = ?, 
+                major_technology_stack = ?, 
+                company_culture = ?, 
+                position_title = ?, 
+                url = ?, 
+                job_responsibilities = ?,
+                job_requirements = ?, 
+                technologies = ?, 
+                benefits = ?, 
+                first_contact = ?, 
+                contacted_person = ?, 
+                schedule = ?, 
+                how_it_went = ? 
+            WHERE id = ?";
     try {
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$firm_name, $business_model, $contact_info, $location, $id]);
+        $stmt->execute([
+            $company_name,
+            $company_structure,
+            $web_site,
+            $major_products_services,
+            $company_type,
+            $major_technology_stack,
+            $company_culture,
+            $position_title,
+            $url,
+            $job_responsibilities,
+            $job_requirements,
+            $technologies,
+            $benefits,
+            $first_contact,
+            $contacted_person,
+            $schedule,
+            $how_it_went,
+            $id
+        ]);
     } catch (PDOException $e) {
         die("Error updating job: " . $e->getMessage());
     }
 
-    header('Location: index.php'); // Redirect to the main page after update
+    // Redirect to the main page after update
+    header('Location: index.php');
     exit();
-} 
+}
 
-// If the form is not yet submitted, fetch the job data
 if (isset($_GET['id'])) {
     $job_id = $_GET['id'];
 
@@ -47,39 +94,87 @@ if (isset($_GET['id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport meta tag for mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Job</title>
-    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Edit Job</h1>
+    <div class="container">
+        <h1>Edit Job</h1>
 
-    <form action="" method="post">
-        <!-- Hidden input to identify the job being edited -->
-        <input type="hidden" name="id" value="<?php echo $job['id']; ?>">
+        <form action="" method="post">
+            <input type="hidden" name="id" value="<?php echo $job['id']; ?>">
 
-        <label for="firm_name">Firm Name:</label><br>
-        <input type="text" id="firm_name" name="firm_name" value="<?php echo htmlspecialchars($job['firm_name']); ?>"><br>
+            <label for="company_name">Company Name:</label><br>
+            <input type="text" id="company_name" name="company_name" value="<?php echo $job['company_name']; ?>"><br>
 
-        <label for="business_model">Business Model:</label><br>
-        <input type="text" id="business_model" name="business_model" value="<?php echo htmlspecialchars($job['business_model']); ?>"><br>
+            <label for="company_structure">Company Structure:</label><br>
+            <input type="text" id="company_structure" name="company_structure"
+                value="<?php echo $job['company_structure']; ?>"><br>
 
-        <label for="contact_info">Contact Info:</label><br>
-        <input type="text" id="contact_info" name="contact_info" value="<?php echo htmlspecialchars($job['contact_info']); ?>"><br>
+            <label for="web_site">Website:</label><br>
+            <input type="text" id="web_site" name="web_site" value="<?php echo $job['web_site']; ?>"><br>
 
-        <label for="location">Location:</label><br>
-        <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($job['location']); ?>"><br>
+            <label for="major_products_services">Major Products/Services:</label><br>
+            <input type="text" id="major_products_services" name="major_products_services"
+                value="<?php echo $job['major_products_services']; ?>"><br>
 
-        <input type="submit" value="Update Job">
-    </form>
+            <label for="company_type">Company Type:</label><br>
+            <input type="text" id="company_type" name="company_type" value="<?php echo $job['company_type']; ?>"><br>
 
-    <a href="index.php">Back to Jobs List</a>
-</div>
+            <label for="major_technology_stack">Technology Stack:</label><br>
+            <input type="text" id="major_technology_stack" name="major_technology_stack"
+                value="<?php echo $job['major_technology_stack']; ?>"><br>
+
+            <label for="company_culture">Company Culture:</label><br>
+            <input type="text" id="company_culture" name="company_culture"
+                value="<?php echo $job['company_culture']; ?>"><br>
+
+            <label for="position_title">Position Title:</label><br>
+            <input type="text" id="position_title" name="position_title"
+                value="<?php echo $job['position_title']; ?>"><br>
+
+            <label for="url">Job URL:</label><br>
+            <input type="text" id="url" name="url" value="<?php echo $job['url']; ?>"><br>
+
+            <label for="job_responsibilities">Job Responsibilities:</label><br>
+            <input type="text" id="job_responsibilities" name="job_responsibilities"
+                value="<?php echo $job['job_responsibilities']; ?>"><br>
+
+            <label for="job_requirements">Job Requirements:</label><br>
+            <input type="text" id="job_requirements" name="job_requirements"
+                value="<?php echo $job['job_requirements']; ?>"><br>
+
+            <label for="technologies">Technologies:</label><br>
+            <input type="text" id="technologies" name="technologies" value="<?php echo $job['technologies']; ?>"><br>
+
+            <label for="benefits">Benefits:</label><br>
+            <input type="text" id="benefits" name="benefits" value="<?php echo $job['benefits']; ?>"><br>
+
+            <label for="first_contact">First Contact:</label><br>
+            <input type="text" id="first_contact" name="first_contact" value="<?php echo $job['first_contact']; ?>"><br>
+
+            <label for="contacted_person">Contacted Person:</label><br>
+            <input type="text" id="contacted_person" name="contacted_person"
+                value="<?php echo $job['contacted_person']; ?>"><br>
+
+            <label for="schedule">Schedule:</label><br>
+            <input type="text" id="schedule" name="schedule" value="<?php echo $job['schedule']; ?>"><br>
+
+            <label for="how_it_went">How It Went:</label><br>
+            <input type="text" id="how_it_went" name="how_it_went" value="<?php echo $job['how_it_went']; ?>"><br>
+
+            <input type="submit" value="Update Job">
+        </form>
+
+        <a href="index.php">Back to Jobs List</a>
+    </div>
 
 </body>
+
 </html>
