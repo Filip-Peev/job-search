@@ -19,56 +19,93 @@ try {
 
 <head>
     <meta charset="UTF-8">
-    <title>Job List</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th,
-        td {
-            border: 1px solid black;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs List</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <h1>Jobs</h1>
-    <table border="1">
-        <tr>
-            <th>Firm Name</th>
-            <th>Business Model</th>
-            <th>Contact Info</th>
-            <th>Location</th>
-            <th>Edit/Delete</th>
-        </tr>
-        <?php foreach ($jobs_list as $job): ?>
+    <a href="index.php" style="text-decoration: none;">
+        <h1>Jobs</h1>
+    </a>
+
+
+    <a href="add_job.php" class="add-job-btn">Add New Job</a>
+
+    <div class="searchbar-container">
+        <!-- Search bar -->
+        <input type="text" id="searchBar" placeholder="Filter..." oninput="searchJobs()">
+    </div>
+
+    <table>
+        <thead>
             <tr>
-                <td><?php echo htmlspecialchars($job['firm_name']); ?></td>
-                <td><?php echo htmlspecialchars($job['business_model']); ?></td>
-                <td><?php echo htmlspecialchars($job['contact_info']); ?></td>
-                <td><?php echo htmlspecialchars($job['location']); ?></td>
-                <td>
-                    <a href="edit_job.php?id=<?php echo $job['id']; ?>">Edit</a> |
-                    
-                    <!-- Form to delete the job -->
-                    <form action="delete_job.php" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this job?');">
-                        <input type="hidden" name="id" value="<?php echo $job['id']; ?>">
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
+                <th>Firm Name</th>
+                <th>Business Model</th>
+                <th>Contact Info</th>
+                <th>Location</th>
+                <th>Modify</th>
             </tr>
-        <?php endforeach; ?>
+        </thead>
+        <tbody id="jobTableBody">
+            <?php foreach ($jobs_list as $job): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($job['firm_name']); ?></td>
+                    <td><?php echo htmlspecialchars($job['business_model']); ?></td>
+                    <td><?php echo htmlspecialchars($job['contact_info']); ?></td>
+                    <td><?php echo htmlspecialchars($job['location']); ?></td>
+                    <td>
+                        <a href="edit_job.php?id=<?php echo $job['id']; ?>">Edit</a> |
+                        <form action="delete_job.php" method="POST" style="display:inline;"
+                            onsubmit="return confirm('Are you sure you want to delete this job?');">
+                            <input type="hidden" name="id" value="<?php echo $job['id']; ?>">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
     </table>
 
-    <a href="add_job.php">Add a New Job</a>
+    <script>
+        function searchJobs() {
+            let input = document.getElementById('searchBar').value.toLowerCase();
+            let table = document.getElementById('jobTableBody');
+            let rows = table.getElementsByTagName('tr');
+            let found = false;
+
+            // Loop through all table rows and hide those that don't match the search
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName('td');
+                let rowText = "";
+
+                // Combine the text from each cell in the row
+                for (let j = 0; j < cells.length - 1; j++) {  // Skip the last cell (Modify column)
+                    rowText += cells[j].textContent.toLowerCase() + " ";
+                }
+
+                if (rowText.includes(input)) {
+                    rows[i].style.display = '';
+                    rows[i].classList.add('highlight'); // Highlight matching rows
+                    found = true;
+                } else {
+                    rows[i].style.display = 'none';
+                    rows[i].classList.remove('highlight');
+                }
+            }
+
+            // Scroll to the first found row
+            if (found) {
+                for (let i = 0; i < rows.length; i++) {
+                    if (rows[i].style.display !== 'none') {
+                        rows[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        break;
+                    }
+                }
+            }
+        }
+    </script>
 
 </body>
 

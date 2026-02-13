@@ -49,32 +49,37 @@ if (isset($_GET['id'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport meta tag for mobile responsiveness -->
     <title>Edit Job</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Edit Job</h1>
+<div class="container">
+    <h1>Edit Job</h1>
 
-<form action="" method="post">
-    <!-- Hidden input to identify the job being edited -->
-    <input type="hidden" name="id" value="<?php echo $job['id']; ?>">
+    <form action="" method="post">
+        <!-- Hidden input to identify the job being edited -->
+        <input type="hidden" name="id" value="<?php echo $job['id']; ?>">
 
-    <label for="firm_name">Firm Name:</label><br>
-    <input type="text" id="firm_name" name="firm_name" value="<?php echo htmlspecialchars($job['firm_name']); ?>"><br>
+        <label for="firm_name">Firm Name:</label><br>
+        <input type="text" id="firm_name" name="firm_name" value="<?php echo htmlspecialchars($job['firm_name']); ?>"><br>
 
-    <label for="business_model">Business Model:</label><br>
-    <input type="text" id="business_model" name="business_model" value="<?php echo htmlspecialchars($job['business_model']); ?>"><br>
+        <label for="business_model">Business Model:</label><br>
+        <input type="text" id="business_model" name="business_model" value="<?php echo htmlspecialchars($job['business_model']); ?>"><br>
 
-    <label for="contact_info">Contact Info:</label><br>
-    <input type="text" id="contact_info" name="contact_info" value="<?php echo htmlspecialchars($job['contact_info']); ?>"><br>
+        <label for="contact_info">Contact Info:</label><br>
+        <input type="text" id="contact_info" name="contact_info" value="<?php echo htmlspecialchars($job['contact_info']); ?>"><br>
 
-    <label for="location">Location:</label><br>
-    <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($job['location']); ?>"><br>
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($job['location']); ?>"><br>
 
-    <input type="submit" value="Update Job">
-</form>
+        <input type="submit" value="Update Job">
+    </form>
 
-<a href="index.php">Back to Jobs List</a>
+    <a href="index.php">Back to Jobs List</a>
+</div>
 
 </body>
 </html>

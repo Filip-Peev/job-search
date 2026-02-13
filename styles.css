@@ -1,0 +1,250 @@
+/* General Reset */
+body,
+h1,
+table,
+form {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+    /* Rounded corners */
+    overflow: hidden;
+    /* Ensures the border radius applies correctly */
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    /* Border for table cells */
+    padding: 5px;
+    text-align: center;
+}
+
+th {
+    background-color: #333;
+    /* Darker background for the top row */
+    color: white;
+    /* White text for better contrast */
+}
+
+/* Add alternating row colors */
+table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Light grey for even rows */
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+    /* White for odd rows */
+}
+
+/* Link Styling */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Search Bar */
+.searchbar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+
+#searchBar {
+    width: 150px;
+    padding: 5px;
+}
+
+/* Button Styling */
+button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c82333;
+}
+
+.add-job-btn {
+    position: sticky;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    z-index: 10; /* Ensure it's above other elements */
+
+}
+
+.add-job-btn:hover {
+    background-color: #45a049;
+    text-decoration: none;
+}
+
+/* Form Styling for Delete button */
+form {
+    display: inline;
+}
+
+/* Success message */
+.success-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Add Job Form Layout */
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    font-size: 1.1em;
+}
+
+input[type="text"],
+input[type="submit"] {
+    padding: 10px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design for Smaller Screens */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    table {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+
+    a {
+        font-size: 14px;
+    }
+
+    button {
+        padding: 4px 8px;
+    }
+
+    .container {
+        padding: 15px;
+        width: 90%;
+    }
+
+    input[type="text"],
+    input[type="submit"] {
+        font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.3em;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 6px;
+    }
+
+    a {
+        font-size: 12px;
+    }
+
+    button {
+        padding: 4px 8px;
+    }
+
+    .container {
+        padding: 10px;
+        width: 95%;
+    }
+
+    input[type="text"],
+    input[type="submit"] {
+        font-size: 0.8em;
+    }
+}
