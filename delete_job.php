@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Error deleting job: " . $e->getMessage());
     }
     
-    header('Location: list_jobs.php'); // Redirect to the main page after deletion
+    header('Location: index.php'); // Redirect to the main page after deletion
     exit();
 } else {
     die("Invalid request.");

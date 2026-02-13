@@ -1,3 +1,5 @@
 # job-search-web-app
 
-Starting Point Version 0.1
+Updated config.php file with a bit better code<br>
+Combined edit and update files into edit_job.php file<br>
+Renamed list_job.php to index.php file

@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<div style='position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: green; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px;'>Job added successfully!</div>";
         echo "<script>
                 setTimeout(function() {
-                    window.location.href = 'list_jobs.php';
+                    window.location.href = 'index.php';
                 }, 1000); // Redirect after 1 seconds
               </script>";
         exit;
